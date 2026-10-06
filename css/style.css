@@ -582,16 +582,19 @@ p {
 .tech-stack {
   display: grid;
 
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 
   gap: 10px;
+  width: 100%;
 }
 
 .tech-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
 
+  min-width: 0;
+  width: 100%;
   min-height: 52px;
 
   padding: 9px;
@@ -615,7 +618,21 @@ p {
 
   background: rgba(124, 92, 255, 0.06);
 }
+/* Prevent long technology names from pushing outside */
+.tech-item > span:last-child {
+    min-width: 0;
 
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    font-weight: 600;
+}
 .tech-icon {
   display: grid;
   place-items: center;
@@ -965,9 +982,7 @@ p {
     font-size: clamp(2.5rem, 14vw, 4rem);
   }
 
-  .tech-stack {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  
 
   .contact-card {
     grid-template-columns: 1fr;
